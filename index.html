@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patricia S. Hui</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E3DFCE; --paper:#FBF8F0; --ink:#1A0905; --navy:#4C050C;
+  --brass:#4C050C; --brass-soft:#94B1C8; --soft:#D8E2E8; --line:rgba(26,9,5,.13);
+  --muted:#6E6258; --maxw:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Hanken Grotesk",sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 12% 8%,rgba(166,124,66,.06),transparent 38%),radial-gradient(circle at 88% 0%,rgba(31,58,95,.05),transparent 40%);
+}
+h1,h2,h3,.serif{font-family:"Fraunces",serif;font-weight:500;line-height:1.08;letter-spacing:-.01em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.eyebrow{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);font-weight:600}
+a{color:inherit;text-decoration:none}
+
+/* prototype ribbon */
+.ribbon{position:fixed;top:0;right:0;z-index:200;background:var(--navy);color:#fff;font-size:.66rem;
+  letter-spacing:.16em;text-transform:uppercase;padding:6px 14px;border-bottom-left-radius:10px;font-weight:600}
+
+/* NAV */
+header.nav{position:sticky;top:0;z-index:120;background:rgba(245,241,232,.86);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-family:"Fraunces",serif;font-size:1.18rem;font-weight:600;letter-spacing:-.01em}
+.brand span{color:var(--brass)}
+.menu{display:flex;gap:6px;align-items:center}
+.menu button{font-family:inherit;font-size:.9rem;color:var(--ink);background:none;border:none;cursor:pointer;
+  padding:9px 14px;border-radius:999px;letter-spacing:.01em;transition:.2s}
+.menu button:hover{color:var(--navy)}
+.menu button.active{background:var(--navy);color:#fff}
+.menu .cta{border:1px solid var(--navy);color:var(--navy);margin-left:6px}
+.menu .cta:hover{background:var(--navy);color:#fff}
+
+/* PAGES */
+.page{display:none;animation:fade .5s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+section{padding:74px 0}
+.section-label{display:flex;align-items:center;gap:14px;margin-bottom:34px}
+.section-label .line{height:1px;background:var(--line);flex:1}
+
+/* HERO */
+.hero{padding:86px 0 60px}
+.hero .eyebrow{margin-bottom:22px}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);max-width:14ch}
+.hero h1 em{font-style:italic;color:var(--navy)}
+.hero p.lead{font-size:1.18rem;max-width:54ch;margin:26px 0 0;color:#2c3645}
+.hero .ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.97rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:1px solid var(--navy);transition:.22s}
+.btn.solid{background:var(--navy);color:#fff}
+.btn.solid:hover{background:#16293f;transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--navy)}
+.btn.ghost:hover{background:var(--navy);color:#fff;transform:translateY(-2px)}
+.hero-reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}
+.hero-reveal.d1{animation-delay:.05s}.hero-reveal.d2{animation-delay:.18s}.hero-reveal.d3{animation-delay:.32s}.hero-reveal.d4{animation-delay:.46s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* FEATURED STRIP */
+.featured{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0;background:rgba(255,253,248,.5)}
+.featured .lab{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:18px}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 38px;align-items:center}
+.logos span{font-family:"Fraunces",serif;font-size:1.18rem;color:#46505f;opacity:.78;letter-spacing:.02em;transition:.2s}
+.logos span:hover{opacity:1;color:var(--navy)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
+.stat .num{font-family:"Fraunces",serif;font-size:clamp(2.8rem,6vw,4.2rem);color:var(--navy);font-weight:500;line-height:1}
+.stat .num .pct{color:var(--brass-soft)}
+.stat .cap{margin-top:10px;color:var(--muted);font-size:.98rem;max-width:24ch;margin-inline:auto}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.1fr 1.3fr;gap:54px;align-items:center}
+.portrait{aspect-ratio:4/5;border-radius:14px;background:
+  linear-gradient(140deg,var(--navy),#34506f 55%,var(--brass-soft));position:relative;overflow:hidden;
+  box-shadow:0 24px 50px -24px rgba(31,58,95,.5)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%}
+.about h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:18px}
+.about p{color:#2c3645;margin-bottom:14px;font-size:1.04rem}
+
+/* DUAL PATH */
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.path{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:34px;transition:.25s}
+.path:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(31,58,95,.4)}
+.path .eyebrow{margin-bottom:12px}
+.path h3{font-size:1.5rem;margin-bottom:10px}
+.path p{color:var(--muted);margin-bottom:20px}
+.path .link{color:var(--navy);font-weight:600;font-size:.95rem}
+.path .link span{transition:.2s;display:inline-block}
+.path:hover .link span{transform:translateX(5px)}
+
+/* PORTFOLIO */
+.page-head{padding-top:64px}
+.page-head h1{font-size:clamp(2.3rem,5vw,3.6rem)}
+.page-head p{color:var(--muted);max-width:56ch;margin-top:14px;font-size:1.08rem}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:36px 0 8px}
+.chip{font-family:inherit;font-size:.88rem;padding:9px 18px;border-radius:999px;border:1px solid var(--line);
+  background:transparent;cursor:pointer;transition:.2s;color:var(--ink)}
+.chip:hover{border-color:var(--navy)}
+.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;
+  transition:.28s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 30px 56px -30px rgba(31,58,95,.45)}
+.card .thumb{aspect-ratio:16/10;position:relative;display:grid;place-items:center;color:#fff;
+  font-family:"Fraunces",serif;font-size:2.4rem}
+.card .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);color:var(--navy);
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:5px 11px;border-radius:999px}
+.card .body{padding:22px 22px 24px}
+.card .client{font-family:"Fraunces",serif;font-size:1.35rem;margin-bottom:4px}
+.card .role{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.card .result{font-size:1rem;color:#2c3645}
+.card .more{margin-top:16px;font-size:.86rem;font-weight:600;color:var(--brass)}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:flex-start;justify-content:center;
+  background:rgba(20,28,42,.55);backdrop-filter:blur(4px);overflow-y:auto;padding:50px 20px}
+.modal.open{display:flex}
+.modal-card{background:var(--bg);max-width:760px;width:100%;border-radius:18px;overflow:hidden;animation:rise .4s ease}
+.modal-hero{padding:46px 46px 34px;color:#fff;position:relative}
+.modal-hero .tag{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.9}
+.modal-hero h2{font-size:2.3rem;color:#fff;margin:10px 0 6px}
+.modal-hero .meta{opacity:.85;font-size:.95rem}
+.modal-close{position:absolute;top:22px;right:24px;background:rgba(255,255,255,.2);border:none;color:#fff;
+  width:38px;height:38px;border-radius:50%;font-size:1.3rem;cursor:pointer;line-height:1}
+.modal-body{padding:34px 46px 46px}
+.modal-body h4{font-family:"Fraunces",serif;font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);margin:22px 0 8px}
+.modal-body h4:first-child{margin-top:0}
+.modal-body p{color:#2c3645}
+.cov{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.cov span{background:var(--soft);border-radius:999px;padding:6px 14px;font-size:.85rem;color:var(--navy)}
+.kpis{display:flex;gap:26px;flex-wrap:wrap;margin-top:6px}
+.kpis div{font-family:"Fraunces",serif;color:var(--navy)}
+.kpis .k{font-size:1.9rem}.kpis .l{font-family:"Hanken Grotesk";font-size:.82rem;color:var(--muted)}
+
+/* SKILLS */
+.skill-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.sg{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px}
+.sg .ic{width:42px;height:42px;border-radius:11px;background:var(--soft);display:grid;place-items:center;
+  color:var(--navy);font-family:"Fraunces",serif;font-size:1.2rem;margin-bottom:16px}
+.sg h3{font-size:1.3rem;margin-bottom:14px}
+.sg ul{list-style:none}
+.sg li{padding:8px 0;border-top:1px solid var(--line);color:#2c3645;font-size:.98rem}
+.sg li:first-of-type{border-top:none}
+.tools{margin-top:26px;background:var(--navy);color:#fff;border-radius:16px;padding:30px 34px}
+.tools h3{color:#fff;font-size:1.2rem;margin-bottom:14px}
+.tools .t{display:flex;flex-wrap:wrap;gap:9px}
+.tools .t span{background:rgba(255,255,255,.12);padding:7px 14px;border-radius:999px;font-size:.88rem}
+
+/* CONSULTING */
+.consult-hero{background:var(--navy);color:#fff;border-radius:20px;padding:60px;position:relative;overflow:hidden}
+.consult-hero::after{content:"";position:absolute;right:-60px;bottom:-60px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,var(--brass),transparent 70%);opacity:.4}
+.consult-hero .eyebrow{color:var(--brass-soft)}
+.consult-hero h1{color:#fff;font-size:clamp(2rem,4vw,3rem);max-width:18ch;margin:16px 0}
+.consult-hero p{max-width:52ch;opacity:.9;font-size:1.1rem}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.svc{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px;transition:.25s}
+.svc:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(31,58,95,.4)}
+.svc .n{font-family:"Fraunces",serif;color:var(--brass);font-size:1.4rem}
+.svc h3{font-size:1.2rem;margin:10px 0 8px}
+.svc p{color:var(--muted);font-size:.95rem}
+.quote{margin-top:30px;background:var(--soft);border-radius:16px;padding:40px;text-align:center}
+.quote p{font-family:"Fraunces",serif;font-style:italic;font-size:1.2rem;line-height:1.5;color:var(--navy);max-width:62ch;margin:0 auto 16px}
+.quote .by{color:var(--muted);font-size:.9rem;letter-spacing:.04em}
+
+/* RESUME */
+.resume-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.timeline{margin-top:36px;border-left:2px solid var(--line);padding-left:30px}
+.tl{position:relative;padding-bottom:30px}
+.tl::before{content:"";position:absolute;left:-38px;top:6px;width:13px;height:13px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--brass)}
+.tl .when{font-size:.82rem;color:var(--brass);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.tl h3{font-size:1.25rem;margin:3px 0 2px}
+.tl .co{color:var(--navy);font-weight:600;font-size:.95rem;margin-bottom:6px}
+.tl p{color:var(--muted);font-size:.96rem;max-width:62ch}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.mini .box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:26px}
+.mini h4{font-family:"Fraunces",serif;font-size:1.1rem;margin-bottom:12px}
+.mini p{color:#2c3645;font-size:.95rem;margin-bottom:6px}
+
+/* FOOTER */
+footer{background:var(--ink);color:#cfd6e0;padding:54px 0;margin-top:30px}
+footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer .brand{color:#fff}
+footer a{color:var(--brass-soft);font-weight:600}
+footer .muted{color:#8a93a1;font-size:.9rem}
+
+@media(max-width:860px){
+  .menu .lbl{display:none}
+  .about,.paths,.stats,.grid,.skill-groups,.services,.mini{grid-template-columns:1fr}
+  .stats{gap:36px}
+  .menu button{padding:8px 10px;font-size:.84rem}
+  section{padding:54px 0}
+  .consult-hero{padding:40px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">Patricia S. Hui<span>.</span></div>
+    <nav class="menu" id="menu">
+      <button data-go="home" class="active">Home</button>
+      <button data-go="portfolio">Portfolio</button>
+      <button data-go="skills">Skills</button>
+      <button data-go="consulting">Consulting</button>
+      <button data-go="resume" class="cta">Résumé</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<main id="home" class="page active">
+  <div class="wrap hero">
+    <div class="eyebrow hero-reveal d1">Public Relations · Strategic Communications · Brand &amp; Reputation</div>
+    <h1 class="hero-reveal d2">Earning trust for brands in <em>healthcare, AI &amp; luxury.</em></h1>
+    <p class="lead hero-reveal d3">A strategic communications and PR professional with 8+ years of global experience spanning healthcare, generative AI, luxury, and e-commerce — finding clarity in complexity and shaping it into credible narratives that build trust with patients, members, media, and stakeholders.</p>
+    <div class="ctas hero-reveal d4">
+      <button class="btn solid" data-go="portfolio">View my work →</button>
+      <button class="btn ghost" data-go="consulting">Work with me →</button>
+    </div>
+  </div>
+
+  <div class="featured">
+    <div class="wrap">
+      <div class="lab">Featured &amp; placed in</div>
+      <div class="logos">
+        <span>Forbes</span><span>British Vogue</span><span>CNET</span><span>ELLE Decor</span>
+        <span>Harper's Bazaar</span><span>Financial Times</span><span>The Cut</span>
+        <span>Hypebeast</span><span>Fox Carolina</span><span>Atlanta News First</span>
+        <span>San Luis Obispo Tribune</span><span>WFLA (Bloom TV)</span><span>The Sun Sentinel</span>
+      </div>
+    </div>
+  </div>
+
+  <section><div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="num" data-to="200"><span class="val">0</span><span class="pct">%</span></div><div class="cap">growth in luxury category visibility at The RealReal</div></div>
+      <div class="stat"><div class="num" data-to="55"><span class="val">0</span><span class="pct">%</span></div><div class="cap">increase in website traffic after a national PR campaign at Lalique</div></div>
+      <div class="stat"><div class="num" data-to="40"><span class="val">0</span><span class="pct">%</span></div><div class="cap">social growth in 90 days building inaugural PR at Posh AI</div></div>
+    </div>
+  </div></section>
+
+  <section style="padding-top:20px"><div class="wrap about">
+    <div class="portrait"><img src="./assets/img/portrait.jpg" alt="Patricia S. Hui"></div>
+    <div>
+      <div class="eyebrow" style="margin-bottom:14px">About</div>
+      <h2>Big-brand strategy, measurable results, any industry.</h2>
+      <p>I currently drive earned media and corporate reputation for <strong>MDVIP</strong>, a national membership-based primary care network, working within HIPAA and health-claim compliance guidelines alongside legal and medical teams.</p>
+      <p>Before healthcare, I built PR functions and led global campaigns for <strong>Cartier, Tiffany &amp; Co., Lalique, The RealReal</strong>, and the generative-AI company <strong>Posh AI</strong>. I specialize in strategic storytelling, media relations, executive thought leadership, and AI-powered, data-informed PR.</p>
+      <p>When I'm not consulting for large companies, you can find me working with <strong>Outset Consulting</strong>, my boutique agency that offers a breadth of marketing, graphic design, and communications services for small to mid-sized businesses.</p>
+    </div>
+  </div></section>
+
+  <section style="padding-top:20px"><div class="wrap">
+    <div class="paths">
+      <div class="path" data-go="resume">
+        <div class="eyebrow">For hiring teams</div>
+        <h3>See the résumé &amp; case studies</h3>
+        <p>Eight years of senior communications across regulated healthcare, AI, and luxury — with the metrics and coverage to back it up.</p>
+        <div class="link"><span>Explore my work →</span></div>
+      </div>
+      <div class="path" data-go="consulting">
+        <div class="eyebrow">For founders &amp; brands</div>
+        <h3>Build your brand with Outset</h3>
+        <p>Enterprise-level communications strategy, scaled for small and mid-sized companies ready to show up with confidence.</p>
+        <div class="link"><span>See consulting →</span></div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<!-- ================= PORTFOLIO ================= -->
+<main id="portfolio" class="page">
+  <div class="wrap page-head">
+    <div class="eyebrow">Selected Work</div>
+    <h1>A catalog of campaigns &amp; coverage.</h1>
+    <p>Case studies across healthcare, AI, luxury, and e-commerce — each one a challenge, an approach, and a measurable result. Filter by industry, or open a card for the full story.</p>
+    <div class="filters" id="filters">
+      <button class="chip active" data-f="all">All</button>
+      <button class="chip" data-f="healthcare">Healthcare</button>
+      <button class="chip" data-f="ai">AI &amp; Tech</button>
+      <button class="chip" data-f="luxury">Luxury</button>
+      <button class="chip" data-f="ecommerce">E-commerce</button>
+    </div>
+  </div>
+  <section style="padding-top:24px"><div class="wrap">
+    <div class="grid" id="cards"></div>
+  </div></section>
+</main>
+
+<!-- ================= SKILLS ================= -->
+<main id="skills" class="page">
+  <div class="wrap page-head">
+    <div class="eyebrow">Capabilities</div>
+    <h1>What I bring to the table.</h1>
+    <p>A senior communications toolkit — from earned media and crisis response to regulated healthcare messaging and AI-powered, data-informed PR.</p>
+  </div>
+  <section style="padding-top:30px"><div class="wrap">
+    <div class="skill-groups">
+      <div class="sg"><div class="ic">✦</div><h3>Media &amp; Earned Media</h3><ul>
+        <li>Media Relations &amp; Earned Media</li><li>Press Materials &amp; Media Briefings</li>
+        <li>Beat-reporter &amp; influencer relationships</li></ul></div>
+      <div class="sg"><div class="ic">❖</div><h3>Strategy &amp; Storytelling</h3><ul>
+        <li>Strategic Communications &amp; Storytelling</li><li>Brand Strategy &amp; Messaging Frameworks</li>
+        <li>Executive &amp; SME Thought Leadership</li></ul></div>
+      <div class="sg"><div class="ic">◆</div><h3>Reputation &amp; Specialized</h3><ul>
+        <li>Corporate Reputation &amp; Crisis Communications</li><li>Healthcare / Regulated Communications</li>
+        <li>Cross-Functional Facilitation (Legal &amp; Marketing)</li></ul></div>
+      <div class="sg"><div class="ic">✧</div><h3>Modern, Data-Informed PR</h3><ul>
+        <li>AI-Powered, Data-Informed PR</li><li>Social &amp; Digital Media Strategy</li>
+        <li>Media monitoring, sentiment &amp; pitch optimization</li></ul></div>
+    </div>
+    <div class="tools">
+      <h3>Tools &amp; platforms</h3>
+      <div class="t">
+        <span>Cision</span><span>Claude (Anthropic)</span><span>HubSpot</span><span>WordPress</span><span>Brevo</span>
+        <span>Google Analytics</span><span>Canva</span><span>LinkedIn</span><span>Instagram</span>
+        <span>Microsoft Office</span><span>Google Workspace</span><span>Slack</span><span>Monday.com</span>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<!-- ================= CONSULTING ================= -->
+<main id="consulting" class="page">
+  <section><div class="wrap">
+    <div class="consult-hero">
+      <div class="eyebrow">Outset Consulting</div>
+      <h1>Big-business strategy, built for growing companies.</h1>
+      <p>Through Outset Consulting, I help small and mid-sized businesses show up with clarity, credibility, and confidence — bridging enterprise-level communications strategy with scalable, actionable solutions.</p>
+    </div>
+    <div class="services">
+      <div class="svc"><div class="n">01</div><h3>Brand &amp; Messaging Strategy</h3><p>Messaging frameworks, positioning, and an authentic brand voice that stays consistent across every channel.</p></div>
+      <div class="svc"><div class="n">02</div><h3>PR &amp; Media Positioning</h3><p>Earned-media strategy, media relations, press materials, and executive thought leadership that build reputation.</p></div>
+      <div class="svc"><div class="n">03</div><h3>Owned-Channel Marketing</h3><p>Email campaigns and content programs (HubSpot, Brevo, WordPress) that turn visibility into lasting relationships.</p></div>
+    </div>
+    <div class="quote">
+      <p>“Working with Patricia at Outset has been seamless from the start. She quickly stepped in, assessed where projects stood, and added both strategic and operational value exactly where it was needed. From clarifying my marketing priorities to shaping email communications and broader messaging, her hands-on approach brought structure and momentum to every work stream. With Patricia, there was always direction and purpose with every deliverable.”</p>
+      <div class="by">— Robert Lehr, CEO, Disceryx</div>
+    </div>
+    <div style="text-align:center;margin-top:34px">
+      <a class="btn solid" href="https://www.outset.consulting" target="_blank" rel="noopener noreferrer">Show me More →</a>
+    </div>
+  </div></section>
+</main>
+
+<!-- ================= RESUME ================= -->
+<main id="resume" class="page">
+  <div class="wrap page-head">
+    <div class="resume-top">
+      <div>
+        <div class="eyebrow">Résumé</div>
+        <h1>Eight years, seven brands, three industries.</h1>
+      </div>
+      <a class="btn solid" href="Patricia_Hui_Resume.pdf" target="_blank" rel="noopener" download>↓ Download PDF</a>
+    </div>
+    <p style="margin-top:18px">Strategic communications and PR professional with 8+ years of global experience spanning healthcare, generative AI, luxury, and e-commerce. Specializes in strategic storytelling, media relations, executive thought leadership, and AI-powered, data-informed PR.</p>
+  </div>
+  <section style="padding-top:30px"><div class="wrap">
+    <div class="timeline">
+      <div class="tl"><div class="when">Oct 2025 — Present</div><h3>PR Consultant</h3><div class="co">MDVIP · National Membership-Based Primary Care</div><p>Earned media and corporate reputation for a national physician network — regional and broadcast coverage, executive media prep, and AI-powered, data-informed PR within HIPAA and health-claim compliance.</p></div>
+      <div class="tl"><div class="when">Jan 2025 — Present</div><h3>Co-Founder, Head of Marketing &amp; Communications</h3><div class="co">Outset Consulting · Branding &amp; Communications Agency</div><p>Co-founded a boutique agency, leading end-to-end brand and communications strategy across multiple client accounts and industries.</p></div>
+      <div class="tl"><div class="when">2023</div><h3>PR &amp; Communications Manager</h3><div class="co">Posh AI · Generative AI</div><p>Built the inaugural PR strategy for a generative-AI company — 40% social growth in 90 days, Forbes placements, and AI Breakthrough Awards.</p></div>
+      <div class="tl"><div class="when">2021 — 2022</div><h3>PR Specialist</h3><div class="co">The RealReal · Luxury Resale / E-Commerce</div><p>Crisis and rapid-response comms; grew category visibility 200% and coverage 55% via data-driven pitching. Placed in CNET, The Cut, British Vogue, Hypebeast, Forbes.</p></div>
+      <div class="tl"><div class="when">2019 — 2020</div><h3>PR Manager</h3><div class="co">Lalique · Luxury Lifestyle</div><p>Launched the first North American PR function — +55% web traffic, +30% social engagement; first-time placements in ELLE Decor, Traditional Home, Cultured.</p></div>
+      <div class="tl"><div class="when">2018 — 2019</div><h3>PR Consultant</h3><div class="co">Tiffany &amp; Co. · Luxury Jewelry</div><p>Unified communications for 7 store openings and remodels; supported national events and international launches.</p></div>
+      <div class="tl"><div class="when">2017 — 2018</div><h3>Press &amp; PR Coordinator</h3><div class="co">Cartier · Luxury Jewelry</div><p>Editorial placements (British Vogue, ELLE, Harper's Bazaar, Financial Times) and red-carpet moments (BAFTAs, Oscars); high-profile relationships with discretion and polish.</p></div>
+    </div>
+    <div class="mini">
+      <div class="box"><h4>Education &amp; Certifications</h4>
+        <p>Foundations of Project Management — Google x Coursera · 2024</p>
+        <p>Professional Certificate, Digital Marketing — Emeritus x Columbia Business School · 2021</p>
+        <p>BA, Brand Marketing + Communications — ESMOD Paris · 2017</p></div>
+      <div class="box"><h4>Languages</h4>
+        <p>English — Fluent</p><p>French — Proficient</p><p>Cantonese — Proficient</p>
+        <p>Mandarin, Spanish, Japanese — Beginner</p></div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap f">
+  <div class="brand serif" style="font-size:1.3rem">Patricia S. Hui<span style="color:var(--brass)">.</span></div>
+  <div class="muted">San Francisco Bay Area</div>
+  <div style="text-align:right;line-height:1.8">
+    <div><span class="muted">For Recruiters:</span> <a href="mailto:patricia.hui@icloud.com">patricia.hui@icloud.com</a></div>
+    <div><span class="muted">For Brands:</span> <a href="mailto:patricia@outset.consulting">patricia@outset.consulting</a></div>
+    <div><a href="https://www.linkedin.com/in/patricia-hui/" target="_blank" rel="noopener">LinkedIn</a></div>
+  </div>
+</div></footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <div class="modal-hero" id="mHero">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="tag" id="mTag"></div>
+      <h2 id="mTitle"></h2>
+      <div class="meta" id="mMeta"></div>
+    </div>
+    <div class="modal-body">
+      <div class="kpis" id="mKpis"></div>
+      <h4>The Challenge</h4><p id="mChal"></p>
+      <h4>My Approach</h4><p id="mApp"></p>
+      <h4>Coverage &amp; Recognition</h4><div class="cov" id="mCov"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---- page switching ---- */
+const pages=document.querySelectorAll('.page');
+const btns=document.querySelectorAll('[data-go]');
+function go(id){
+  pages.forEach(p=>p.classList.toggle('active',p.id===id));
+  document.querySelectorAll('#menu button').forEach(b=>b.classList.toggle('active',b.dataset.go===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='home') runStats();
+}
+btns.forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+
+/* ---- stat count-up ---- */
+let statsDone=false;
+function runStats(){
+  statsDone=false;
+  document.querySelectorAll('.stat .num').forEach(n=>{
+    const to=+n.dataset.to, val=n.querySelector('.val'); let cur=0;
+    const step=Math.max(1,Math.round(to/45));
+    clearInterval(n._t);
+    n._t=setInterval(()=>{cur+=step; if(cur>=to){cur=to;clearInterval(n._t);} val.textContent=cur;},22);
+  });
+}
+window.addEventListener('load',runStats);
+
+/* ---- portfolio data ---- */
+const work=[
+  {id:'mdvip',client:'MDVIP',role:'PR Consultant · Healthcare',tags:['healthcare'],c1:'#33526a',c2:'#527896',icon:'heart',
+   result:'Regional &amp; broadcast coverage for a national physician network in a competitive market.',
+   meta:'National Membership-Based Primary Care · 2025–Present',
+   chal:'A growing membership-based primary care network needed earned media that built trust and reputation in an increasingly competitive healthcare market — all within strict HIPAA and health-claim compliance.',
+   app:'Proactive, corporate-priority-aligned storytelling and inbound media management; relationships with healthcare and wellness reporters; executive and physician spokesperson prep; and AI-powered media monitoring, sentiment analysis, and pitch optimization — with announcements routed through legal and medical review.',
+   cov:['The Wellness Files (Fox Carolina)','Atlanta News First','The San Luis Obispo Tribune']},
+  {id:'posh',client:'Posh AI',role:'PR &amp; Comms Manager · AI',tags:['ai'],c1:'#1f0a07',c2:'#4c0a12',icon:'spark',
+   result:'Launched inaugural PR strategy for a generative-AI start-up.',
+   meta:'Generative AI · 2023',
+   chal:'A generative-AI startup with no PR footprint needed credible visibility in a fast-moving, crowded category.',
+   app:'Built the inaugural PR and communications strategy from scratch — op-eds, conferences, and podcasts; C-suite counsel; quarterly shareholder communications; and cross-functional work across Marketing, Product, Sales, and Business Development.',
+   cov:['Forbes','AI Breakthrough Awards','+40% social in 90 days','15–20% sustained quarterly growth'],
+   kpis:[['40%','social growth, 90 days'],['15–20%','sustained per quarter']]},
+  {id:'realreal',client:'The RealReal',role:'PR Specialist · E-commerce',tags:['ecommerce','luxury'],c1:'#4c050c',c2:'#842230',icon:'bag',
+   result:'Drove standout brand and category visibility through data-driven media storytelling.',
+   meta:'Luxury Resale / E-Commerce · 2021–2022',
+   chal:'Elevate the fine jewelry, watches, and collectibles category while building rapid-response infrastructure to protect public image.',
+   app:'Data-driven pitching tied to the annual Luxury Resale and Sustainability Reports, cross-format media relations, and a structured system for handling media queries and crisis response.',
+   cov:['CNET','The Cut','British Vogue','Hypebeast','Forbes'],
+   kpis:[['200%','category visibility'],['55%','more coverage']]},
+  {id:'lalique',client:'Lalique',role:'PR Manager · Luxury',tags:['luxury'],c1:'#3a4f63',c2:'#5e2230',icon:'crown',
+   result:'Revamped the North American PR strategy for a global luxury house.',
+   meta:'Luxury Lifestyle · 2019–2020',
+   chal:'Establish a North American PR presence from the ground up and align it with marketing and sales.',
+   app:'Built the function end to end, with localized campaigns, influencer programming, and experiential brand events that drove measurable lift.',
+   cov:['ELLE Decor','Traditional Home','Cultured'],
+   kpis:[['55%','web traffic'],['30%','social engagement']]},
+  {id:'tiffany',client:'Tiffany &amp; Co.',role:'PR Consultant · Luxury',tags:['luxury'],c1:'#5e0c18',c2:'#8a2b36',icon:'diamond',
+   result:'Unified communications across 7 store openings and remodels, supporting high-impact PR moments.',
+   meta:'Luxury Jewelry · 2018–2019',
+   chal:'Maintain one consistent brand voice across regional activations, store openings, and product launches.',
+   app:'Managed regional agencies and centralized messaging; supported national events and international product launches with logistics and reporting.',
+   cov:['7 store openings','National events','International launches']},
+  {id:'cartier',client:'Cartier',role:'Press &amp; PR Coordinator · Luxury',tags:['luxury'],c1:'#2c4154',c2:'#486274',icon:'gem',
+   result:'Editorial placements and red-carpet moments, handled with discretion.',
+   meta:'Luxury Jewelry · 2017–2018',
+   chal:'Secure prestige editorial coverage and represent the house among VIP and luxury audiences.',
+   app:'Cultivated relationships with prominent editors, celebrity stylists, and influencers; supported international launches and high-profile events with the polish and discretion the brand demanded.',
+   cov:['British Vogue','ELLE','Harper\'s Bazaar','Financial Times','BAFTAs','Oscars']}
+];
+const ICONS={
+  heart:'<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5 4.2 12.7a5 5 0 0 1 7.1-7.1l.7.7.7-.7a5 5 0 0 1 7.1 7.1L12 20.5Z"/></svg>',
+  spark:'<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.3L12 15l-1.8-4.7L5.5 9l4.7-1.3L12 3Z"/><path d="M18.5 14l.8 2.2 2.4.7-2.4.7-.8 2.2-.8-2.2-2.4-.7 2.4-.7.8-2.2Z"/></svg>',
+  bag:'<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5h13l-1 12.5h-11L5.5 7.5Z"/><path d="M9 7.5V6a3 3 0 0 1 6 0v1.5"/></svg>',
+  gem:'<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12l3.5 5.5L12 21 2.5 9 6 3.5Z"/><path d="M2.5 9h19M8 3.5l4 5.5 4-5.5M12 9v12"/></svg>',
+  diamond:'<svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 21.5 12 12 21.5 2.5 12 12 2.5Z"/><path d="M2.5 12h19M12 2.5v19"/></svg>',
+  crown:'<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19h14M5 19 3.3 8.5 8 11.5 12 5.5 16 11.5 20.7 8.5 19 19"/></svg>'
+};
+const TAGLABEL={healthcare:'Healthcare',ai:'AI & Tech',luxury:'Luxury',ecommerce:'E-commerce'};
+const cardsEl=document.getElementById('cards');
+function render(filter){
+  cardsEl.innerHTML='';
+  work.filter(w=>filter==='all'||w.tags.includes(filter)).forEach(w=>{
+    const primary=w.tags[0];
+    const el=document.createElement('div');el.className='card';
+    el.innerHTML=`<div class="thumb" style="background:linear-gradient(135deg,${w.c1},${w.c2})">
+        <div class="tag">${TAGLABEL[primary]}</div>${ICONS[w.icon]||''}</div>
+      <div class="body"><div class="client">${w.client}</div><div class="role">${w.role}</div>
+      <div class="result">${w.result}</div><div class="more">Learn more →</div></div>`;
+    el.addEventListener('click',()=>openModal(w));
+    cardsEl.appendChild(el);
+  });
+}
+document.querySelectorAll('#filters .chip').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('#filters .chip').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active'); render(c.dataset.f);
+}));
+render('all');
+
+/* ---- modal ---- */
+function openModal(w){
+  document.getElementById('mHero').style.background=`linear-gradient(135deg,${w.c1},${w.c2})`;
+  document.getElementById('mTag').textContent=w.tags.map(t=>TAGLABEL[t]).join(' · ');
+  document.getElementById('mTitle').innerHTML=w.client;
+  document.getElementById('mMeta').innerHTML=w.role+' &nbsp;·&nbsp; '+w.meta;
+  document.getElementById('mChal').textContent=w.chal;
+  document.getElementById('mApp').textContent=w.app;
+  document.getElementById('mCov').innerHTML=w.cov.map(c=>`<span>${c}</span>`).join('');
+  const k=document.getElementById('mKpis');
+  k.innerHTML=(w.kpis||[]).map(p=>`<div><div class="k">${p[0]}</div><div class="l">${p[1]}</div></div>`).join('');
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
