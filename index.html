@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#E3DFCE; --paper:#FBF8F0; --ink:#1A0905; --navy:#4C050C;
-  --brass:#4C050C; --brass-soft:#94B1C8; --soft:#D8E2E8; --line:rgba(26,9,5,.13);
-  --muted:#6E6258; --maxw:1180px;
+  --bg:#FAF8F1; --paper:#FFFDF8; --ink:#180A06; --navy:#450D0F;
+  --brass:#450D0F; --brass-soft:#C7CFD3; --soft:#C7CFD3; --chip:#E2DFD0;
+  --line:rgba(24,10,6,.14); --muted:#756C66; --maxw:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family:"Hanken Grotesk",sans-serif;background:var(--bg);color:var(--ink);
   line-height:1.55;-webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(circle at 12% 8%,rgba(166,124,66,.06),transparent 38%),radial-gradient(circle at 88% 0%,rgba(31,58,95,.05),transparent 40%);
+  background-image:radial-gradient(circle at 12% 8%,rgba(69,13,15,.05),transparent 38%),radial-gradient(circle at 88% 0%,rgba(199,207,211,.30),transparent 40%);
 }
 h1,h2,h3,.serif{font-family:"Fraunces",serif;font-weight:500;line-height:1.08;letter-spacing:-.01em}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
   letter-spacing:.16em;text-transform:uppercase;padding:6px 14px;border-bottom-left-radius:10px;font-weight:600}
 
 /* NAV */
-header.nav{position:sticky;top:0;z-index:120;background:rgba(245,241,232,.86);backdrop-filter:blur(10px);
+header.nav{position:sticky;top:0;z-index:120;background:rgba(250,248,241,.86);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
 .brand{font-family:"Fraunces",serif;font-size:1.18rem;font-weight:600;letter-spacing:-.01em}
@@ -56,11 +56,11 @@ section{padding:74px 0}
 .hero .eyebrow{margin-bottom:22px}
 .hero h1{font-size:clamp(2.6rem,6vw,4.6rem);max-width:14ch}
 .hero h1 em{font-style:italic;color:var(--navy)}
-.hero p.lead{font-size:1.18rem;max-width:54ch;margin:26px 0 0;color:#2c3645}
+.hero p.lead{font-size:1.18rem;max-width:54ch;margin:26px 0 0;color:#2A2019}
 .hero .ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.97rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:1px solid var(--navy);transition:.22s}
 .btn.solid{background:var(--navy);color:#fff}
-.btn.solid:hover{background:#16293f;transform:translateY(-2px)}
+.btn.solid:hover{background:#2E080A;transform:translateY(-2px)}
 .btn.ghost{background:transparent;color:var(--navy)}
 .btn.ghost:hover{background:var(--navy);color:#fff;transform:translateY(-2px)}
 .hero-reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}
@@ -68,31 +68,31 @@ section{padding:74px 0}
 @keyframes rise{to{opacity:1;transform:none}}
 
 /* FEATURED STRIP */
-.featured{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0;background:rgba(255,253,248,.5)}
+.featured{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0;background:rgba(199,207,211,.34)}
 .featured .lab{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:18px}
 .logos{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 38px;align-items:center}
-.logos span{font-family:"Fraunces",serif;font-size:1.18rem;color:#46505f;opacity:.78;letter-spacing:.02em;transition:.2s}
+.logos span{font-family:"Fraunces",serif;font-size:1.18rem;color:#6B5F57;opacity:.78;letter-spacing:.02em;transition:.2s}
 .logos span:hover{opacity:1;color:var(--navy)}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
 .stat .num{font-family:"Fraunces",serif;font-size:clamp(2.8rem,6vw,4.2rem);color:var(--navy);font-weight:500;line-height:1}
-.stat .num .pct{color:var(--brass-soft)}
+.stat .num .pct{color:var(--navy);opacity:.45}
 .stat .cap{margin-top:10px;color:var(--muted);font-size:.98rem;max-width:24ch;margin-inline:auto}
 
 /* ABOUT */
 .about{display:grid;grid-template-columns:1.1fr 1.3fr;gap:54px;align-items:center}
 .portrait{aspect-ratio:4/5;border-radius:14px;background:
-  linear-gradient(140deg,var(--navy),#34506f 55%,var(--brass-soft));position:relative;overflow:hidden;
-  box-shadow:0 24px 50px -24px rgba(31,58,95,.5)}
+  linear-gradient(140deg,var(--navy),#7A3B33 55%,var(--soft));position:relative;overflow:hidden;
+  box-shadow:0 24px 50px -24px rgba(24,10,6,.42)}
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%}
 .about h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:18px}
-.about p{color:#2c3645;margin-bottom:14px;font-size:1.04rem}
+.about p{color:#2A2019;margin-bottom:14px;font-size:1.04rem}
 
 /* DUAL PATH */
 .paths{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .path{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:34px;transition:.25s}
-.path:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(31,58,95,.4)}
+.path:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(24,10,6,.34)}
 .path .eyebrow{margin-bottom:12px}
 .path h3{font-size:1.5rem;margin-bottom:10px}
 .path p{color:var(--muted);margin-bottom:20px}
@@ -112,7 +112,7 @@ section{padding:74px 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;
   transition:.28s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-6px);box-shadow:0 30px 56px -30px rgba(31,58,95,.45)}
+.card:hover{transform:translateY(-6px);box-shadow:0 30px 56px -30px rgba(24,10,6,.38)}
 .card .thumb{aspect-ratio:16/10;position:relative;display:grid;place-items:center;color:#fff;
   font-family:"Fraunces",serif;font-size:2.4rem}
 .card .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);color:var(--navy);
@@ -120,12 +120,12 @@ section{padding:74px 0}
 .card .body{padding:22px 22px 24px}
 .card .client{font-family:"Fraunces",serif;font-size:1.35rem;margin-bottom:4px}
 .card .role{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
-.card .result{font-size:1rem;color:#2c3645}
+.card .result{font-size:1rem;color:#2A2019}
 .card .more{margin-top:16px;font-size:.86rem;font-weight:600;color:var(--brass)}
 
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:300;display:none;align-items:flex-start;justify-content:center;
-  background:rgba(20,28,42,.55);backdrop-filter:blur(4px);overflow-y:auto;padding:50px 20px}
+  background:rgba(24,10,6,.55);backdrop-filter:blur(4px);overflow-y:auto;padding:50px 20px}
 .modal.open{display:flex}
 .modal-card{background:var(--bg);max-width:760px;width:100%;border-radius:18px;overflow:hidden;animation:rise .4s ease}
 .modal-hero{padding:46px 46px 34px;color:#fff;position:relative}
@@ -138,9 +138,9 @@ section{padding:74px 0}
 .modal-body h4{font-family:"Fraunces",serif;font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--brass);margin:22px 0 8px}
 .modal-body h4:first-child{margin-top:0}
-.modal-body p{color:#2c3645}
+.modal-body p{color:#2A2019}
 .cov{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.cov span{background:var(--soft);border-radius:999px;padding:6px 14px;font-size:.85rem;color:var(--navy)}
+.cov span{background:var(--chip);border-radius:999px;padding:6px 14px;font-size:.85rem;color:var(--navy)}
 .kpis{display:flex;gap:26px;flex-wrap:wrap;margin-top:6px}
 .kpis div{font-family:"Fraunces",serif;color:var(--navy)}
 .kpis .k{font-size:1.9rem}.kpis .l{font-family:"Hanken Grotesk";font-size:.82rem;color:var(--muted)}
@@ -152,7 +152,7 @@ section{padding:74px 0}
   color:var(--navy);font-family:"Fraunces",serif;font-size:1.2rem;margin-bottom:16px}
 .sg h3{font-size:1.3rem;margin-bottom:14px}
 .sg ul{list-style:none}
-.sg li{padding:8px 0;border-top:1px solid var(--line);color:#2c3645;font-size:.98rem}
+.sg li{padding:8px 0;border-top:1px solid var(--line);color:#2A2019;font-size:.98rem}
 .sg li:first-of-type{border-top:none}
 .tools{margin-top:26px;background:var(--navy);color:#fff;border-radius:16px;padding:30px 34px}
 .tools h3{color:#fff;font-size:1.2rem;margin-bottom:14px}
@@ -168,7 +168,7 @@ section{padding:74px 0}
 .consult-hero p{max-width:52ch;opacity:.9;font-size:1.1rem}
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
 .svc{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px;transition:.25s}
-.svc:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(31,58,95,.4)}
+.svc:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(24,10,6,.34)}
 .svc .n{font-family:"Fraunces",serif;color:var(--brass);font-size:1.4rem}
 .svc h3{font-size:1.2rem;margin:10px 0 8px}
 .svc p{color:var(--muted);font-size:.95rem}
@@ -189,14 +189,14 @@ section{padding:74px 0}
 .mini{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
 .mini .box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:26px}
 .mini h4{font-family:"Fraunces",serif;font-size:1.1rem;margin-bottom:12px}
-.mini p{color:#2c3645;font-size:.95rem;margin-bottom:6px}
+.mini p{color:#2A2019;font-size:.95rem;margin-bottom:6px}
 
 /* FOOTER */
-footer{background:var(--ink);color:#cfd6e0;padding:54px 0;margin-top:30px}
+footer{background:var(--soft);color:#2A2019;padding:54px 0;margin-top:30px}
 footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-footer .brand{color:#fff}
-footer a{color:var(--brass-soft);font-weight:600}
-footer .muted{color:#8a93a1;font-size:.9rem}
+footer .brand{color:var(--ink)}
+footer a{color:var(--navy);font-weight:600}
+footer .muted{color:#6B6560;font-size:.9rem}
 
 @media(max-width:860px){
   .menu .lbl{display:none}
@@ -448,40 +448,40 @@ window.addEventListener('load',runStats);
 
 /* ---- portfolio data ---- */
 const work=[
-  {id:'mdvip',client:'MDVIP',role:'PR Consultant · Healthcare',tags:['healthcare'],c1:'#33526a',c2:'#527896',icon:'heart',
+  {id:'mdvip',client:'MDVIP',role:'PR Consultant · Healthcare',tags:['healthcare'],c1:'#3E4E55',c2:'#6E8290',icon:'heart',
    result:'Regional &amp; broadcast coverage for a national physician network in a competitive market.',
    meta:'National Membership-Based Primary Care · 2025–Present',
    chal:'A growing membership-based primary care network needed earned media that built trust and reputation in an increasingly competitive healthcare market — all within strict HIPAA and health-claim compliance.',
    app:'Proactive, corporate-priority-aligned storytelling and inbound media management; relationships with healthcare and wellness reporters; executive and physician spokesperson prep; and AI-powered media monitoring, sentiment analysis, and pitch optimization — with announcements routed through legal and medical review.',
    cov:['The Wellness Files (Fox Carolina)','Atlanta News First','The San Luis Obispo Tribune']},
-  {id:'posh',client:'Posh AI',role:'PR &amp; Comms Manager · AI',tags:['ai'],c1:'#1f0a07',c2:'#4c0a12',icon:'spark',
+  {id:'posh',client:'Posh AI',role:'PR &amp; Comms Manager · AI',tags:['ai'],c1:'#180A06',c2:'#450D0F',icon:'spark',
    result:'Launched inaugural PR strategy for a generative-AI start-up.',
    meta:'Generative AI · 2023',
    chal:'A generative-AI startup with no PR footprint needed credible visibility in a fast-moving, crowded category.',
    app:'Built the inaugural PR and communications strategy from scratch — op-eds, conferences, and podcasts; C-suite counsel; quarterly shareholder communications; and cross-functional work across Marketing, Product, Sales, and Business Development.',
    cov:['Forbes','AI Breakthrough Awards','+40% social in 90 days','15–20% sustained quarterly growth'],
    kpis:[['40%','social growth, 90 days'],['15–20%','sustained per quarter']]},
-  {id:'realreal',client:'The RealReal',role:'PR Specialist · E-commerce',tags:['ecommerce','luxury'],c1:'#4c050c',c2:'#842230',icon:'bag',
+  {id:'realreal',client:'The RealReal',role:'PR Specialist · E-commerce',tags:['ecommerce','luxury'],c1:'#450D0F',c2:'#7A2B2E',icon:'bag',
    result:'Drove standout brand and category visibility through data-driven media storytelling.',
    meta:'Luxury Resale / E-Commerce · 2021–2022',
    chal:'Elevate the fine jewelry, watches, and collectibles category while building rapid-response infrastructure to protect public image.',
    app:'Data-driven pitching tied to the annual Luxury Resale and Sustainability Reports, cross-format media relations, and a structured system for handling media queries and crisis response.',
    cov:['CNET','The Cut','British Vogue','Hypebeast','Forbes'],
    kpis:[['200%','category visibility'],['55%','more coverage']]},
-  {id:'lalique',client:'Lalique',role:'PR Manager · Luxury',tags:['luxury'],c1:'#3a4f63',c2:'#5e2230',icon:'crown',
+  {id:'lalique',client:'Lalique',role:'PR Manager · Luxury',tags:['luxury'],c1:'#4A4038',c2:'#8A5F52',icon:'crown',
    result:'Revamped the North American PR strategy for a global luxury house.',
    meta:'Luxury Lifestyle · 2019–2020',
    chal:'Establish a North American PR presence from the ground up and align it with marketing and sales.',
    app:'Built the function end to end, with localized campaigns, influencer programming, and experiential brand events that drove measurable lift.',
    cov:['ELLE Decor','Traditional Home','Cultured'],
    kpis:[['55%','web traffic'],['30%','social engagement']]},
-  {id:'tiffany',client:'Tiffany &amp; Co.',role:'PR Consultant · Luxury',tags:['luxury'],c1:'#5e0c18',c2:'#8a2b36',icon:'diamond',
+  {id:'tiffany',client:'Tiffany &amp; Co.',role:'PR Consultant · Luxury',tags:['luxury'],c1:'#5E1215',c2:'#93433F',icon:'diamond',
    result:'Unified communications across 7 store openings and remodels, supporting high-impact PR moments.',
    meta:'Luxury Jewelry · 2018–2019',
    chal:'Maintain one consistent brand voice across regional activations, store openings, and product launches.',
    app:'Managed regional agencies and centralized messaging; supported national events and international product launches with logistics and reporting.',
    cov:['7 store openings','National events','International launches']},
-  {id:'cartier',client:'Cartier',role:'Press &amp; PR Coordinator · Luxury',tags:['luxury'],c1:'#2c4154',c2:'#486274',icon:'gem',
+  {id:'cartier',client:'Cartier',role:'Press &amp; PR Coordinator · Luxury',tags:['luxury'],c1:'#2E3A40',c2:'#5C707C',icon:'gem',
    result:'Editorial placements and red-carpet moments, handled with discretion.',
    meta:'Luxury Jewelry · 2017–2018',
    chal:'Secure prestige editorial coverage and represent the house among VIP and luxury audiences.',
